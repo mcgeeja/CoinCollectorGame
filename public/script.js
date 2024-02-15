@@ -66,6 +66,7 @@ function handleStart() {
   setupGround()
   setupCar()
   // setupCactus()
+  worldElem.classList.remove("hide")
   startScreenElem.classList.add("hide")
   window.requestAnimationFrame(update)
 }
