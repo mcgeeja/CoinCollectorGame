@@ -3,7 +3,7 @@ import {
   setCustomProperty
 } from "./updateCustomProperty.js"
 
-const CarElm = document.querySelector("[data-dino]")
+const CarElm = document.querySelector("[data-car]")
 
 let speed = 0.05
 let isMovingLeft

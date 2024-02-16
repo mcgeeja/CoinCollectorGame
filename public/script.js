@@ -1,7 +1,7 @@
-import { setupCar, updateCar } from "./dino.js"
-import { setupGround, updateGround } from "./ground.js"
-
-// import { updateCactus, setupCactus, getCactusRects } from "./cactus.js"
+import { setupCar, updateCar, getCarRect} from "./car.js"
+import { setupGround, updateGround} from "./ground.js"
+import { updateObject, setupObject, getObjectRects } from "./object.js"
+import { updateCoin, setupCoin} from "./coin.js"
 
 const WORLD_WIDTH = 100
 const WORLD_HEIGHT = 30
@@ -28,27 +28,30 @@ function update(time) {
 
   updateGround(delta, speedScale)
   updateCar(delta, speedScale)
+  updateCoin(delta, speedScale)
+  updateObject(delta, speedScale)
   updateSpeedScale(delta)
   updateScore(delta)
-  // if (checkLose()) return handleLose()
+
+  if (checkLose()) return handleLose()
 
   lastTime = time
   window.requestAnimationFrame(update)
 }
 
-// function checkLose() {
-//   const dinoRect = getDinoRect()
-//   return getCactusRects().some(rect => isCollision(rect, dinoRect))
-// }
+function checkLose() {
+  const carRect = getCarRect()
+  return getObjectRects().some(rect => isCollision(rect, carRect))
+}
 
-// function isCollision(rect1, rect2) {
-//   return (
-//     rect1.left < rect2.right &&
-//     rect1.top < rect2.bottom &&
-//     rect1.right > rect2.left &&
-//     rect1.bottom > rect2.top
-//   )
-// }
+function isCollision(rect1, rect2) {
+  return (
+    rect1.left < rect2.right &&
+    rect1.top < rect2.bottom &&
+    rect1.right > rect2.left &&
+    rect1.bottom > rect2.top
+  )
+}
 
 function updateSpeedScale(delta) {
   speedScale += delta * SPEED_SCALE_INCREASE
@@ -65,19 +68,19 @@ function handleStart() {
   score = 0
   setupGround()
   setupCar()
-  // setupCactus()
+  setupCoin()
+  setupObject()
   worldElem.classList.remove("hide")
   startScreenElem.classList.add("hide")
   window.requestAnimationFrame(update)
 }
 
-// function handleLose() {
-//   setDinoLose()
-//   setTimeout(() => {
-//     document.addEventListener("keydown", handleStart, { once: true })
-//     startScreenElem.classList.remove("hide")
-//   }, 100)
-// }
+function handleLose() {
+  setTimeout(() => {
+    document.addEventListener("keydown", handleStart, { once: true })
+    startScreenElem.classList.remove("hide")
+  }, 100)
+}
 
 function setPixelToWorldScale() {
   let worldToPixelScale

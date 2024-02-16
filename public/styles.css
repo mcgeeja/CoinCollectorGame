@@ -53,7 +53,7 @@ body {
   top: calc(var(--top) * 1%)
 }
 
-.dino {
+.car {
   --left: 50%;
   position: absolute;
   bottom: 10px;
@@ -62,8 +62,41 @@ body {
 }
 
 .cactus {
+  --top: 0;
+  --left: 0;
   position: absolute;
-  left: calc(var(--left) * 1%);
-  height: 30%;
+  height: 13%;
   bottom: 0;
+  top: calc(var(--top) * 1%);
+  left: calc(var(--left) * 1%);
+}
+
+.coin {
+  --top: 0;
+  --left: 0;
+  position: absolute;
+  height: 5%;
+  bottom: 0;
+  top: calc(var(--top) * 1%);
+  left: calc(var(--left) * 1%);
+}
+
+.log {
+  --top: 0;
+  --left: 0;
+  position: absolute;
+  height: 5%;
+  bottom: 0;
+  top: calc(var(--top) * 1%);
+  left: calc(var(--left) * 1%);
+}
+
+.dumpster {
+  --top: 0;
+  --left: 0;
+  position: absolute;
+  height: 5%;
+  bottom: 0;
+  top: calc(var(--top) * 1%);
+  left: calc(var(--left) * 1%);
 }
